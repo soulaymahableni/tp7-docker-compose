@@ -1,0 +1,10 @@
+# Dockerfile « naïf » fourni pour comparaison (partie 2) : NE PAS utiliser tel quel.
+# Problèmes : image complète, devDependencies embarquées, exécution en root,
+# pas de .dockerignore, cache des couches mal exploité, pas de HEALTHCHECK.
+FROM node:24
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
